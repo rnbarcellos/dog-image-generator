@@ -7,7 +7,11 @@ class App extends React.Component {
     isLoading: true,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    if (localStorage.length > 0) {
+      this.getDoguinho();
+      return;
+    }
     this.generateDog();
   }
 
@@ -28,6 +32,11 @@ class App extends React.Component {
     const response = await fetch(endpoint);
     const data = await response.json();
     this.setState({ imageUrl: data.message, isLoading: false });
+  };
+
+  getDoguinho = () => {
+    const doguinho = window.localStorage.getItem('doguinho') || '';
+    this.setState({ imageUrl: doguinho });
   };
 
   render() {
