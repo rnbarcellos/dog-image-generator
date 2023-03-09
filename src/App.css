@@ -1,11 +1,11 @@
 img {
-  height: 500px;
-  width: 500px;
+  height: 450px;
+  width: 450px;
 }
 
 div {
-  height: 750px;
+  height: fit-content;
   margin: auto;
   text-align: center;
-  width: 504px;
+  width: 454px;
 }
