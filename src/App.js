@@ -8,19 +8,22 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    this.fetchAPI();
+    this.generateDog();
   }
 
-  shouldComponentUpdate(/* nextProps, nextState */) {
-    // Implemente sua lógica aqui
-    return true;
+  shouldComponentUpdate(_, nextState) {
+    const { imageUrl } = nextState;
+    return !(imageUrl.includes('terrier'));
   }
 
   componentDidUpdate() {
-    // Implemente sua lógica aqui
+    const { imageUrl } = this.state;
+    window.localStorage.setItem('doguinho', imageUrl);
+    const breed = imageUrl.split('/');
+    alert(breed[4]);
   }
 
-  fetchAPI = async () => {
+  generateDog = async () => {
     const endpoint = 'https://dog.ceo/api/breeds/image/random';
     const response = await fetch(endpoint);
     const data = await response.json();
@@ -34,7 +37,7 @@ class App extends React.Component {
         <h1>Doguinhos</h1>
         { isLoading ? <h2>Loading...</h2>
           : <img src={ imageUrl } alt="Doguinho aleatório" />}
-        <input type="button" value="Novo doguinho!" onClick={ this.fetchAPI } />
+        <input type="button" value="Novo doguinho!" onClick={ this.generateDog } />
       </div>
     );
   }
