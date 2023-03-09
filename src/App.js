@@ -22,7 +22,7 @@ class App extends React.Component {
 
   componentDidUpdate() {
     const { imageUrl } = this.state;
-    window.localStorage.setItem('doguinho', imageUrl);
+    localStorage.setItem('doguinho', imageUrl);
     const breed = imageUrl.split('/');
     alert(breed[4]);
   }
@@ -35,8 +35,8 @@ class App extends React.Component {
   };
 
   getDoguinho = () => {
-    const doguinho = window.localStorage.getItem('doguinho') || '';
-    this.setState({ imageUrl: doguinho });
+    const doguinho = localStorage.getItem('doguinho') || '';
+    this.setState({ imageUrl: doguinho, isLoading: false });
   };
 
   render() {
@@ -46,6 +46,7 @@ class App extends React.Component {
         <h1>Doguinhos</h1>
         { isLoading ? <h2>Loading...</h2>
           : <img src={ imageUrl } alt="Doguinho aleatório" />}
+        <br />
         <input type="button" value="Novo doguinho!" onClick={ this.generateDog } />
       </div>
     );
