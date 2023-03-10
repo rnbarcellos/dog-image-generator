@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dog-img-generator/static/css/main.efe347ed.css",
+    "main.js": "/dog-img-generator/static/js/main.a6a56a2c.js",
+    "index.html": "/dog-img-generator/index.html",
+    "main.efe347ed.css.map": "/dog-img-generator/static/css/main.efe347ed.css.map",
+    "main.a6a56a2c.js.map": "/dog-img-generator/static/js/main.a6a56a2c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.efe347ed.css",
+    "static/js/main.a6a56a2c.js"
+  ]
+}
