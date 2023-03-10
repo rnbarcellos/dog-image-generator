@@ -5,6 +5,7 @@ class App extends React.Component {
   state = {
     imageUrl: '',
     isLoading: true,
+    breed: '',
   };
 
   componentDidMount() {
@@ -22,28 +23,36 @@ class App extends React.Component {
 
   componentDidUpdate() {
     const { imageUrl } = this.state;
-    localStorage.setItem('doguinho', imageUrl);
-    const breed = imageUrl.split('/');
-    alert(breed[4]);
+    localStorage.setItem('doguinho', imageUrl);   
   }
 
   generateDog = async () => {
     const endpoint = 'https://dog.ceo/api/breeds/image/random';
     const response = await fetch(endpoint);
     const data = await response.json();
-    this.setState({ imageUrl: data.message, isLoading: false });
+    const dogBreed = data.message.split('/')[4];
+    this.setState({
+      imageUrl: data.message,
+      isLoading: false,
+      breed: dogBreed.toUpperCase(),
+    });
   };
 
   getDoguinho = () => {
     const doguinho = localStorage.getItem('doguinho') || '';
-    this.setState({ imageUrl: doguinho, isLoading: false });
+    const dogBreed = doguinho.split('/')[4];
+    this.setState({
+      imageUrl: doguinho,
+      isLoading: false,
+      breed: dogBreed.toUpperCase(),
+    });
   };
 
   render() {
-    const { imageUrl, isLoading } = this.state;
+    const { imageUrl, isLoading, breed } = this.state;
     return (
       <div>
-        <h1>Doguinhos</h1>
+        <h1>{ breed }</h1>
         { isLoading ? <h2>Loading...</h2>
           : <img src={ imageUrl } alt="Doguinho aleatório" />}
         <br />
