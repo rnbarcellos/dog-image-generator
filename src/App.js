@@ -27,15 +27,19 @@ class App extends React.Component {
   }
 
   generateDog = async () => {
-    const endpoint = 'https://dog.ceo/api/breeds/image/random';
-    const response = await fetch(endpoint);
-    const data = await response.json();
-    const dogBreed = data.message.split('/')[4];
-    this.setState({
-      imageUrl: data.message,
-      isLoading: false,
-      breed: dogBreed.toUpperCase(),
-    });
+    try {
+      const endpoint = 'https://dog.ceo/api/breeds/image/random';
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      const dogBreed = data.message.split('/')[4];
+      this.setState({
+        imageUrl: data.message,
+        isLoading: false,
+        breed: dogBreed.toUpperCase(),
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   getDoguinho = () => {
